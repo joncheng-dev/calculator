@@ -18,39 +18,27 @@ function divide(n1, n2) {
 // User interface logic:
 $(document).ready(function () {
   // Addition
-  $("form#add").submit(function (event) {
+  $("form#calculator").submit(function (event) {
     event.preventDefault();
-    const number1 = parseInt($("#add1").val());
-    const number2 = parseInt($("#add2").val());
-    const result = add(number1, number2);
+    const number1 = parseInt($("#input1").val());
+    const number2 = parseInt($("#input2").val());
+    const operator = $("input:radio[name=operator]:checked").val();
+
+    console.log("1st Num: " + number1);
+    console.log("2nd Num: " + number2);
+    console.log("operator: " + operator);
+
+    let result;
+    if (operator === "add") {
+      result = add(number1, number2);
+    } else if (operator === "subtract") {
+      result = subtract(number1, number2);
+    } else if (operator === "multiply") {
+      result = multiply(number1, number2);
+    } else if (operator === "divide") {
+      result = divide(number1, number2);
+    }
     // Prints out the result
-    $("#additionOutput").text(result);
-  });
-  // Subtraction
-  $("form#sub").submit(function (event) {
-    event.preventDefault();
-    const number1 = parseInt($("#sub1").val());
-    const number2 = parseInt($("#sub2").val());
-    const result = subtract(number1, number2);
-    // Prints out the result
-    $("#subtractionOutput").text(result);
-  });
-  // Multiplication
-  $("form#mult").submit(function (event) {
-    event.preventDefault();
-    const number1 = parseInt($("#mult1").val());
-    const number2 = parseInt($("#mult2").val());
-    const result = multiply(number1, number2);
-    // Prints out the result
-    $("#multiplicationOutput").text(result);
-  });
-  // Division
-  $("form#div").submit(function (event) {
-    event.preventDefault();
-    const number1 = parseInt($("#div1").val());
-    const number2 = parseInt($("#div2").val());
-    const result = divide(number1, number2);
-    // Prints out the result
-    $("#divisionOutput").text(result);
+    $("#output").text(result);
   });
 });
